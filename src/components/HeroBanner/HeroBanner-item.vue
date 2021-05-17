@@ -23,6 +23,7 @@ export default {
     delay: String,
     duration: String,
     name: String,
+    index: Number,
     selected: {
         type: Boolean,
         default: false
@@ -39,6 +40,7 @@ export default {
   methods: {
         changeName (value) {
             this.$emit('clicked', value)
+            this.$emit('active', this.index)
         }
   }
 }

@@ -2,10 +2,12 @@
     <div class="HeroBanner">
         <div class="HeroBanner-decoration">
             <hero-banner-item 
-            v-for="item in data" 
-            :key="item.name"
+            v-for="(item, index) in data" 
+            :key="index"
             :name="item.name"
+            :index="index"
             @clicked="onClickChangeName"
+            @active="onClickActiveName"
             :selected="item.name === heading" />
         </div>
         <div class="HeroBanner-content">
@@ -14,9 +16,14 @@
                 <span>with</span>
                 <img src="/assets/images/logo.png" width="250px">
             </h1>
+            <button class="HeroBanner-button" 
+            v-bind:class="{'is-selected' : selected}"
+            v-on:click="scrollIntoView">
+                <span class="sr-only">Find out more about {{heading}}</span>
+                <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" fill="#fff"><path d="M0 3l12 18 12-18h-24zm12 16.197l-10.132-15.197h20.263l-10.131 15.197"/></svg>
+            </button>
         </div>
-        <div class="HeroBanner-image">
-        </div>
+        <div class="HeroBanner-image"></div>
     </div>
 </template>
 
@@ -29,6 +36,8 @@ export default {
   data() {
       return {
           heading: null,
+          selected: false,
+          activeIndex: null
       }
   },
   props: {
@@ -43,7 +52,23 @@ export default {
   methods: {
       onClickChangeName (value) {
         this.heading = value;
+        this.selected = true;
     },
+    onClickActiveName(value) {
+        this.activeIndex = value;
+    },
+    scrollIntoView() {
+        let activeElem = document.querySelectorAll('.Accordion-item')[this.activeIndex];
+        activeElem.open = true;
+
+        console.log(activeElem.getBoundingClientRect())
+        
+        window.scrollTo({
+            top: activeElem.getBoundingClientRect().y,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
   }
 }
 </script>
@@ -78,6 +103,9 @@ $color: #FFBA21;
         position: absolute;
         bottom: 0;
         z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         @media (min-width: 1024px) {
             bottom: 0;
@@ -150,6 +178,32 @@ $color: #FFBA21;
         width: 100%;
         position: absolute;
         bottom: 0;
+    }
+
+    &-button {
+        opacity: 0;
+        visibility: hidden;
+        width: 24px;
+        height: 24px;
+        transform: scale(.7) translateY(10px);
+        transform-origin: center center;
+        transition: opacity .25s ease, transform .25s ease, visibility .25s step-end;
+
+        &.is-selected {
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            transition: opacity .25s ease, transform .25s ease, visibility .25s step-start;
+        }
+
+        &:hover {
+            transform: scale(1.2) translateY(5px);
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
     }
 }
 </style>
