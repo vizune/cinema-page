@@ -76,20 +76,29 @@ $color: #FFBA21;
 
     &-content {
         position: absolute;
-        top: 35vh;
+        bottom: 0;
         z-index: 3;
+
+        @media (min-width: 1024px) {
+            bottom: 0;
+            top: 35vh;
+        }
     }
 
     &-title {
         color: #fff;
         font-weight: bold;
-        font-size: 4rem;
+        font-size: 2.5rem;
         font-family: 'Ubuntu','Montserrat', sans-serif;
         text-align: center;
         text-transform: uppercase;
         letter-spacing: 5px;
         text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 20px 20px rgba(0,0,0,.15);
         z-index: 1;
+
+        @media (min-width: 1024px) {
+            font-size: 4rem;
+        }
 
         img {
             margin: -2rem auto 0;
@@ -100,7 +109,11 @@ $color: #FFBA21;
         }
 
         span:last-child {
-            font-size: 3rem;
+            font-size: 2rem;
+
+            @media (min-width: 1024px) {
+                font-size: 3rem;
+            }
         }
     }
 
@@ -110,8 +123,12 @@ $color: #FFBA21;
         justify-content: space-between;
         position: absolute;
         top: 0;
-        padding: 0 3rem;
+        padding: 0;
         z-index: 2;
+
+        @media (min-width: 1024px) {
+            padding: 0 3rem;
+        }
     }
 
     &-image {
@@ -133,21 +150,6 @@ $color: #FFBA21;
         width: 100%;
         position: absolute;
         bottom: 0;
-
-        svg {
-            position: absolute;
-            bottom: 0;
-            width: 25vw;
-            display: flex;
-
-            &:first-child {
-                left: 5vw;
-            }
-
-            &:last-child {
-                right: 5vw;
-            }
-        }
     }
 }
 </style>

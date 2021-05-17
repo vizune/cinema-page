@@ -7,7 +7,7 @@
                     <span>{{item.name}}</span>
                 </summary>
                 <div class="Accordion-content">
-                    <div class="grid grid-cols-3 gap-4 lg:gap-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
                         <div>
                             <img class="Accordion-image" 
                             :src="item.image_url" 

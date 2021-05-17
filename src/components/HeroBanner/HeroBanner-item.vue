@@ -51,7 +51,11 @@ $color: #FFBA21;
     &-link {
         display: block;
         width: 100px;
-        height: 100px;
+        height: 50px;
+
+        @media (min-width: 1024px) {
+            width: 100px;
+        }
 
         &:before {
 			content: "";
@@ -125,11 +129,16 @@ $color: #FFBA21;
     &-bullet {
         position: relative;
         display: block;
-        width: 4rem;
-        height: 4rem;
+        width: 2.5rem;
+        height: 2.5rem;
         margin: -1.25rem auto 0;
         transform-origin: center center;
         transition: transform .5s ease-in-out;
+
+        @media (min-width: 1024px) {
+            width: 4rem;
+            height: 4rem;
+        }
 
         .HeroBanner-link:nth-child(2n) & {
             animation-name: keyframes1;
