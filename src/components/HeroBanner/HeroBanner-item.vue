@@ -6,7 +6,7 @@
         class="HeroBanner-bullet"
         v-bind:style="{
             animationDelay: animationDelay,
-            animationDuration: animationDuration
+            animationDuration: '.75s'
         }">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" xml:space="preserve">
             <path fill="none" stroke="#FFBA21" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" d="M16 5.1l2.9 8.9h9.4l-7.6 5.5 2.9 9-7.6-5.6-7.6 5.6 2.9-9L3.7 14h9.4z"/></svg>
@@ -31,10 +31,7 @@ export default {
   },
   computed: {
       animationDelay: function() {
-          return Math.floor(Math.random() * (-.85 - .2 + 1) + .2) + "s";
-      },
-      animationDuration: function() {
-          return Math.floor(Math.random() * (.6 - .2 + 1) + .2) + "s";
+          return Math.floor(Math.random() * -(.85 - .5 + 1) + .5) + "s";
       }
   },
   methods: {
